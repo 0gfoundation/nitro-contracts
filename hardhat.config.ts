@@ -209,6 +209,12 @@ module.exports = {
     geth: {
       url: 'http://localhost:8545',
     },
+    zgtest: {
+      url: 'https://evmrpc-testnet.0g.ai',
+      accounts: process.env['DEVNET_PRIVKEY']
+        ? [process.env['DEVNET_PRIVKEY']]
+        : [],
+    }
   },
   etherscan: {
     apiKey: {
