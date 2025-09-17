@@ -89,6 +89,8 @@ contract SequencerInbox is DelegateCallAware, GasRefundEnabled, ISequencerInbox 
     /// @inheritdoc ISequencerInbox
     bytes1 public constant ZERO_HEAVY_MESSAGE_HEADER_FLAG = 0x20;
 
+    bytes1 public constant ZG_MESSAGE_HEADER_FLAG = 0x0c;
+
     // GAS_PER_BLOB from EIP-4844
     uint256 internal constant GAS_PER_BLOB = 1 << 17;
 
@@ -599,7 +601,7 @@ contract SequencerInbox is DelegateCallAware, GasRefundEnabled, ISequencerInbox 
     ) internal pure returns (bool) {
         return headerByte == BROTLI_MESSAGE_HEADER_FLAG || headerByte == DAS_MESSAGE_HEADER_FLAG
             || (headerByte == (DAS_MESSAGE_HEADER_FLAG | TREE_DAS_MESSAGE_HEADER_FLAG))
-            || headerByte == ZERO_HEAVY_MESSAGE_HEADER_FLAG;
+            || headerByte == ZERO_HEAVY_MESSAGE_HEADER_FLAG || headerByte == ZG_MESSAGE_HEADER_FLAG;
     }
 
     /// @dev    Form a hash of the data taken from the calldata
